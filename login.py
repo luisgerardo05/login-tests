@@ -20,14 +20,21 @@ class WebsiteUser(HttpUser):
                 response.failure("Got status code " + str(response.status_code) + " instead of 200")
 
     @task
-    def bad_mail_login_route(self):
+    def bad_email_login_route(self):
         with self.client.post(
             url = '/api/users/login',
             data = json.dumps({
                 "email": "erick.salas.verstand.com.mx",
                 "password": "049ec1af7c1332193d602986f2fdad5b4d1c2ff90e5cdc65388c794c1f10226b"
             }),
-            name='bad_mail_login_route',
+            name='bad_email_login_route',
+            catch_response = True
+        ) as response:
+            if response.status_code == 400:
+                response.success()
+            else:
+                response.failure("Got status code " + str(response.status_code) + " instead of 400")
+
             catch_response = True
         ) as response:
             if response.status_code == 400:
