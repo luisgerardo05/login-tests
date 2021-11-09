@@ -45,7 +45,7 @@ class WebsiteUser(HttpUser):
         with self.client.post(
             url = '/api/users/login',
             data = json.dumps({
-                "email": "erick.salas@ermiry.com",
+                "email": "erick.salas@verstand.com.mx",
                 "password": "049ec1af7c1332193d602986f2fdad5b4d1c2ff90e5cdc65388c794c1f10226b"
             }),
             catch_response = True
